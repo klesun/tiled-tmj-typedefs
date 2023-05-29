@@ -20,7 +20,7 @@ export default interface TiledMap {
     /** Whether the map has infinite dimensions */
     infinite: boolean;
     /** Array of Layers */
-    layers: Layer;
+    layers: Layer[];
     /** Auto-increments for each layer */
     nextlayerid: int;
     /** Auto-increments for each placed object */
@@ -106,7 +106,7 @@ export type Layer = LayerBase & ({
     /** zlib, gzip, zstd (since Tiled 1.3) or empty (default). tilelayer only. */
     compression?: string;
     /** or string Array of unsigned int (GIDs) or base64-encoded data. tilelayer only. */
-    data?: unknown[];
+    data: number[];
     /** Column count. Same as map width for fixed-size maps. tilelayer only. */
     width: int;
 } | {
