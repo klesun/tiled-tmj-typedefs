@@ -1,0 +1,7 @@
+{
+    "name": "tiled-tmj-typedefs",
+    "version": "1.10.1",
+    "description": "Typescript type definitions for the .tmj JSON tilemap structure exportable from the Tiled tilemap editor. Should be useful for people developing js/ts apps that process Tiled tilemaps: for code completion, type validation, quick documentation",
+    "license": "MIT",
+    "types": "./types/TiledMap.d.ts"
+}
