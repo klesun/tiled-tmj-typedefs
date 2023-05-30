@@ -23,7 +23,7 @@ for (const layer of tilemap.layers) {
         for (let y = 0; y < layer.height; ++y) {
             for (let x = 0; x < layer.width; ++x) {
                 const tileIndex = y * layer.width + x;
-                const tilesetIndex = layer.data[tileIndex];
+                const tilesetIndex = layer.data[tileIndex] - 1;
                 const tileset = tilemap.tilesets[tilesetIndex];
                 doSomethingWithTile(y, x, tileset.image);
             }
