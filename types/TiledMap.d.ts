@@ -25,8 +25,7 @@ export default interface TiledMap {
     nextlayerid: int;
     /** Auto-increments for each placed object */
     nextobjectid: int;
-    /** orthogonal, isometric, staggered or hexagonal */
-    orientation: string;
+    orientation: "orthogonal" | "isometric" | "staggered" | "hexagonal";
     /** X coordinate of the parallax origin in pixels (since 1.8, default: 0) */
     parallaxoriginx?: double;
     /** Y coordinate of the parallax origin in pixels (since 1.8, default: 0) */
@@ -35,10 +34,10 @@ export default interface TiledMap {
     properties?: Property[];
     /** right-down (the default), right-up, left-down or left-up (currently only supported for orthogonal maps) */
     renderorder?: string;
-    /** x or y (staggered / hexagonal maps only) */
-    staggeraxis?: string;
-    /** odd or even (staggered / hexagonal maps only) */
-    staggerindex?: string;
+    /** staggered / hexagonal maps only */
+    staggeraxis?: "x" | "y";
+    /** staggered / hexagonal maps only */
+    staggerindex?: "odd" | "even";
     /** The Tiled version used to save the file */
     tiledversion: string;
     /** Map grid height */
@@ -82,7 +81,6 @@ export interface LayerBase {
     starty?: int;
     /** Hex-formatted tint color (#RRGGBB or #AARRGGBB) that is multiplied with any graphics drawn by this layer or any child layers (optional). */
     tintcolor?: string;
-    /** tilelayer, objectgroup, imagelayer or group */
     type: "tilelayer" | "objectgroup" | "imagelayer" | "group";
     /** Whether layer is shown or hidden in editor */
     visible: boolean;
@@ -100,11 +98,11 @@ export type Layer = LayerBase & ({
     /** Array of chunks (optional). tilelayer only. */
     chunks?: Chunk[];
     /** csv (default) or base64. tilelayer only. */
-    encoding?: string;
+    encoding?: "csv" | "base64";
     /** Row count. Same as map height for fixed-size maps. tilelayer only. */
     height: int;
     /** zlib, gzip, zstd (since Tiled 1.3) or empty (default). tilelayer only. */
-    compression?: string;
+    compression?: "zlib" | "gzip" | "zstd";
     /** or string Array of unsigned int (GIDs) or base64-encoded data. tilelayer only. */
     data: number[];
     /** Column count. Same as map width for fixed-size maps. tilelayer only. */
@@ -112,7 +110,7 @@ export type Layer = LayerBase & ({
 } | {
     type: "objectgroup";
     /** topdown (default) or index. objectgroup only. */
-    draworder: string;
+    draworder: "topdown" | "index";
     /** Array of objects. objectgroup only. */
     objects: Object[];
 } | {
@@ -196,7 +194,7 @@ export interface Text {
     /** Font family (default: sans-serif) */
     fontfamily: string;
     /** Horizontal alignment (center, right, justify or left (default)) */
-    halign: string;
+    halign: "center" | "right" | "justify" | "left";
     /** Whether to use an italic font (default: false) */
     italic: boolean;
     /** Whether to use kerning when placing characters (default: true) */
@@ -210,7 +208,7 @@ export interface Text {
     /** Whether to underline the text (default: false) */
     underline: boolean;
     /** Vertical alignment (center, bottom or top (default)) */
-    valign: string;
+    valign: "center" | "bottom" | "top";
     /** Whether the text is wrapped within the object bounds (default: false) */
     wrap: boolean;
 }
@@ -224,7 +222,7 @@ export interface Tileset {
     /** The number of tile columns in the tileset */
     columns: int;
     /** The fill mode to use when rendering tiles from this tileset (stretch (default) or preserve-aspect-fit) (since 1.9) */
-    fillmode?: string;
+    fillmode?: "stretch" | "preserve-aspect-fit";
     /**
      * GID corresponding to the first tile in the set
      * This allows you to map the global IDs back to the right tileset,
@@ -245,7 +243,7 @@ export interface Tileset {
     /** Name given to this tileset */
     name: string;
     /** Alignment to use for tile objects (unspecified (default), topleft, top, topright, left, center, right, bottomleft, bottom or bottomright) (since 1.4) */
-    objectalignment?: string;
+    objectalignment?: "topleft" | "top" | "topright" | "left" | "center" | "right" | "bottomleft" | "bottom" | "bottomright";
     /** Array of Properties */
     properties?: Property[];
     /** The external file that contains this tilesets data */
@@ -263,7 +261,7 @@ export interface Tileset {
     /** Offset (optional) */
     tileoffset?: TileOffset;
     /** The size to use when rendering tiles from this tileset on a tile layer (tile (default) or grid) (since 1.9) */
-    tilerendersize?: string;
+    tilerendersize?: "tile" | "grid";
     /** Array of Tiles (optional) */
     tiles?: Tile[];
     /** Maximum width of tiles in this set */
@@ -289,7 +287,7 @@ export interface Grid {
     /** Cell height of tile grid */
     height: int;
     /** orthogonal (default) or isometric */
-    orientation: string;
+    orientation: "orthogonal" | "isometric";
     /** Cell width of tile grid */
     width: int;
 }
@@ -383,7 +381,7 @@ export interface WangSet {
     /** Local ID of tile representing the Wang set */
     tile: int;
     /** corner, edge or mixed (since 1.5) */
-    type: string;
+    type: "corner" | "edge" | "mixed";
     /** Array of Wang tiles */
     wangtiles: WangTile[];
 }
@@ -426,7 +424,7 @@ export interface Property {
     /** Name of the property */
     name: string;
     /** Type of the property (string (default), int, float, bool, color, file, object or class (since 0.16, with color and file added in 0.17, object added in 1.4 and class added in 1.8)) */
-    type: string;
+    type: "string" | "int" | "float" | "bool" | "color" | "file" | "class";
     /** Name of the custom property type, when applicable (since 1.8) */
     propertytype: string;
     /** Value of the property */
